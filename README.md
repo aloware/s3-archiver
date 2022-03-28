@@ -23,4 +23,4 @@ node index.js -b <bucket> -d <directory> -z <zipfileName> [-r deleteFiles]
 ```
 
 ## Result
-The archive will be uploaded to the bucket root.
+The archive will be uploaded to selected directory of the bucket.
