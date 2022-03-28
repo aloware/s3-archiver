@@ -1,15 +1,17 @@
 const { S3 } = require('aws-sdk');
 const { PassThrough } = require('stream');
 const Archiver = require('archiver');
+var argv = require('minimist')(process.argv.slice(2));
 
 // get inputs from the user
-const bucket = process.argv[2];
-const directory = process.argv[3];
-const zipFileName = process.argv[4];
+const bucket = argv['b'];
+const directory = argv['d'];
+const zipFileName = argv['z'];
+const deleteFiles = argv['r'] || false;
 
 // check the inputs
 if (!bucket || !directory || !zipFileName) {
-  console.log('Useaage: npm run start <bucket> <directory> <zipFileName>');
+  console.log('Useaage: npm run start -b <bucket> -d <directory> -z <zipFileName> [-r]');
   process.exit(1);
 }
 
@@ -100,6 +102,9 @@ async function processFileObject(fileKey) {
   // Wait for the part to be uploaded
   const object = await s3.getObject({ Bucket: bucket, Key: fileKey }).promise();
   archive.append(object.Body, { name: fileKey });
+  if (deleteFiles) {
+    await s3.deleteObject({ Bucket: bucket, Key: fileKey }).promise();
+  }
 }
 
 function createUpload() {
@@ -230,10 +235,10 @@ async function completeUpload() {
   return s3.completeMultipartUpload(params).promise();
 }
 
-main()
-  .then(() => {
-    console.log('Done');
-  })
-  .catch(err => {
-    console.error(err);
-  });
+// main()
+//   .then(() => {
+//     console.log('Done');
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   });
