@@ -11,7 +11,7 @@ const deleteFiles = argv['r'] || false;
 
 // check the inputs
 if (!bucket || !directory || !zipFileName) {
-  console.log('Useaage: npm run start -b <bucket> -d <directory> -z <zipFileName> [-r deleteFiles]');
+  console.log('Usage: npm run start -b <bucket> -d <directory> -z <zipFileName> [-r deleteFiles]');
   process.exit(1);
 }
 
