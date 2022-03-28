@@ -19,7 +19,7 @@ Check the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configu
 
 ## Usage
 ```bash
-npm run start <bucket> <directory>
+node index.js -b <bucket> -d <directory> -z <zipfileName> [-r deleteFiles]
 ```
 
 ## Result
