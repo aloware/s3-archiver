@@ -11,7 +11,7 @@ const deleteFiles = argv['r'] || false;
 
 // check the inputs
 if (!bucket || !directory || !zipFileName) {
-  console.log('Useaage: npm run start -b <bucket> -d <directory> -z <zipFileName> [-r]');
+  console.log('Useaage: npm run start -b <bucket> -d <directory> -z <zipFileName> [-r deleteFiles]');
   process.exit(1);
 }
 
@@ -235,10 +235,10 @@ async function completeUpload() {
   return s3.completeMultipartUpload(params).promise();
 }
 
-// main()
-//   .then(() => {
-//     console.log('Done');
-//   })
-//   .catch(err => {
-//     console.error(err);
-//   });
+main()
+  .then(() => {
+    console.log('Done');
+  })
+  .catch(err => {
+    console.error(err);
+  });
