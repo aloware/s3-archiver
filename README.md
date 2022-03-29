@@ -6,7 +6,7 @@ The trick is will upload the archive directly to S3, without having to download 
 ## Installation
 - Clone the repository to your local machine:
 ```bash
-git clone https://github.com/amir-the-h/s3-archiver.git
+git clone https://github.com/aloware/s3-archiver.git
 ```
 - Install the dependencies:
 ```bash
